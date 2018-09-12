@@ -8,11 +8,12 @@ public class AboutMe{
   public static String name;
   public static String hairColor;
   public static Integer age;
-  public static String location;
+  public String location;
   public static String vacation;
   public static String height;
   public static String day;
   public static String sport;
+  public String breakfast;
 
   public AboutMe(){
     name = "Kaitlin";
@@ -22,7 +23,8 @@ public class AboutMe{
     vacation = "she doesn't know where she is traveling yet";
     height = "5'5";
     day = "Friday";
-    sport = "tennis"
+    sport = "tennis";
+    breakfast = "eggs, bread, and fruits";
   }
 
   public static void main(String[] args) {
@@ -51,20 +53,82 @@ public class AboutMe{
       System.out.println("Her name is " +K.name);
     }
 
+//---------------------------------------------------------------------------------------------------
     else if (userIn.equals("2")){
       System.out.println("a.Normally");
       System.out.println("b.During vacation");
-    }
 
+      Scanner aorb = new Scanner(System.in);
+      String ab = newIn.next();
+      if (ab.equals("a")){
+        System.out.println("She's in " +K.location);
+        System.out.println("---------------------");
+        System.out.println("Do you want to change her location");
+        System.out.println("c.yes");
+        System.out.println("d.no");
+      }
+
+      else if (ab.equals("b")){
+        System.out.println(K.vacation);
+      }
+
+
+      Scanner cord = new Scanner(System.in);
+      String cd = newIn.next();
+      if (cd.equals("c")){
+        System.out.println("Please enter the location");
+        Scanner changeL = new Scanner(System.in);
+        K.location = changeL.next();
+
+        System.out.println("Got it, she is at " +K.location+ " now");
+      }
+    }
+//---------------------------------------------------------------------------------------------------
     else if (userIn.equals("3")){
-      System.out.println("");
-      System.out.println("");
+      System.out.println("Her favorite day in a week is " +K.day);
     }
 
-    Scanner aorb = new Scanner(System.in);
+    else if (userIn.equals("4")){
+      System.out.println("She has " +K.hairColor+ " hair");
+    }
+
+//---------------------------------------------------------------------------------------------------
+
+    else if (userIn.equals("5")){
+      System.out.println("She usually eat " +K.breakfast+ "for breakfast");
+      System.out.println("---------------------");
+      System.out.println("Do you want to let she eat something else for breakfast?");
+      System.out.println("e.yes");
+      System.out.println("f.no");
+
+      Scanner eorf = new Scanner(System.in);
+      String ef = newIn.next();
+      if (ef.equals("e")){
+        System.out.println("What do you want her to eat?");
+        Scanner changeB = new Scanner(System.in);
+        K.breakfast = changeB.next();
+        System.out.println("Well, occationally, she also eat " +K.breakfast);
+  }
+      else if (ef.equals("f")){
+          System.out.println("Fine...she will eat those everyday.");
+        }
+    }
+
+//---------------------------------------------------------------------------------------------------
+
+    else if (userIn.equals("6")){
+      System.out.println("She is " +K.age+ " now");
+    }
+
+    else if (userIn.equals("7")){
+      System.out.println("She plays " +K.sport+ " all year");
+    }
+
+    /*Scanner aorb = new Scanner(System.in);
     String ab = newIn.next();
     if (ab.equals("a")){
       System.out.println("She's in " +K.location);
+      System.out.println("---------------------");
       System.out.println("Do you want to change her location");
       System.out.println("c.yes");
       System.out.println("d.no");
@@ -80,9 +144,22 @@ public class AboutMe{
     if (cd.equals("c")){
       System.out.println("Please enter the location");
       Scanner changeL = new Scanner(System.in);
-      String newL = changeL.next();
-      System.out.println("Got it, she is at " +newL+ " now");
-    }
+      K.location = changeL.next();
+
+      System.out.println("Got it, she is at " +K.location+ " now");
+    } */
+
+    /*Scanner eorf = new Scanner(System.in);
+    String ef = newIn.next();
+    if (ef.equals("e")){
+      System.out.println("What do you want her to eat?");
+      Scanner changeB = new Scanner(System.in);
+      String newB = changeB.next();
+      System.out.println("Well, occationally, she also eat " +newB);
+}
+    else if (ef.equals("f")){
+        System.out.println("Fine...she will eat those everyday.");
+      }*/
 
 
 
