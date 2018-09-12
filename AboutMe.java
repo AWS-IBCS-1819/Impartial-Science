@@ -12,6 +12,7 @@ public class AboutMe{
   public static String vacation;
   public static String height;
   public static String day;
+  public static String sport;
 
   public AboutMe(){
     name = "Kaitlin";
@@ -21,6 +22,7 @@ public class AboutMe{
     vacation = "she doesn't know where she is traveling yet";
     height = "5'5";
     day = "Friday";
+    sport = "tennis"
   }
 
   public static void main(String[] args) {
@@ -32,11 +34,14 @@ public class AboutMe{
     System.out.println("");
     System.out.println("only type the letter or number before the dot");
     System.out.println("");
-    System.out.println("1.name");
-    System.out.println("2.location");
-    System.out.println("3.");
-    System.out.println("4.");
-    System.out.println("5.");
+    System.out.println("1.Name");
+    System.out.println("2.Location");
+    System.out.println("3.Favorite day in a week");
+    System.out.println("4.Hair color");
+    System.out.println("5.Breakfast");
+    System.out.println("5.Height");
+    System.out.println("6.Age");
+    System.out.println("7.Sport");
 
     Scanner newIn = new Scanner(System.in);
     String userIn = newIn.next();
