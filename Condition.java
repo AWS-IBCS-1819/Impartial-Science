@@ -12,7 +12,7 @@ public class Condition{
       Scanner sc = new Scanner(randtxt);
 
       while (sc.hasNext());{ //check to see if the file is empty
-        myStr.append(sc.nextLine() +"\n"); //add on to the end of the StringBuilder
+        myStr.append(sc.nextLine() +" "); //add on to the end of the StringBuilder
         //nextLine or next determined how it reads import junit.framework.TestCase;
         //" " or "\n"controls the space between it
         count++;
@@ -26,7 +26,7 @@ public class Condition{
     System.out.println(myStr);
 
     int num0 = 0;
-    for (int i = 0; i < count - 2; i++){
+    for (int i = 0; i < myStr.capacity() - 3; i++){
 
       if (myStr.substring(i, i+2).equals("Hi")){//try to find Hi
         System.out.println(myStr.substring(i, i+2));
