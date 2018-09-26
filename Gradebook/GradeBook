@@ -1,0 +1,87 @@
+import java.io.File;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.*;
+import java.util.stream.IntStream;
+
+public class GradeBook {
+    private List<double[]> students;
+    private static final DecimalFormat FMT = new DecimalFormat("#.#");
+
+    public GradeBook(Scanner input) {
+        this.students = new ArrayList<double[]>();
+        while (input.hasNextLine()) {
+            double[] student = Arrays.stream(input.nextLine().trim().split("\\s+"))
+                  .mapToDouble(Double::parseDouble)
+                  .toArray();
+            students.add(student);
+        }
+    }
+
+    public double getScore(int student, int assignment) {
+        return this.students.get(student)[assignment];
+    }
+
+    public double averageForStudent(int student) {
+        return Arrays.stream(this.students.get(student))
+                     .average()
+                     .getAsDouble();
+    }
+
+    public double averageForAssignment(int assignment) {
+        return this.students.stream()
+                   .mapToDouble((assignments) -> assignments[assignment])
+                   .average()
+                   .getAsDouble();
+    }
+
+    public double average() {
+        return IntStream.range(0, this.students.size())
+                        .mapToDouble((s) -> this.averageForStudent(s))
+                        .average()
+                        .getAsDouble();
+    }
+
+    public String toString() {
+        StringBuilder out = new StringBuilder();
+        int numAssignments = this.students.stream()
+                                 .mapToInt((assignments) -> assignments.length)
+                                 .max()
+                                 .getAsInt();
+
+        // Header
+        out.append("\t\t\t\tAssignment #:\n\t\t");
+        for (int a = 0; a < numAssignments; a++) {
+           out.append(a + 1).append('\t');
+        }
+        out.append("Avg\n");
+
+        // Body
+        for (int s = 0; s < this.students.size(); s++) {
+            out.append("Student #").append(s + 1).append(":\t");
+            for (int a = 0; a < numAssignments; a++) {
+                out.append(FMT.format(this.getScore(s, a))).append('\t');
+            }
+            out.append(FMT.format(this.averageForStudent(s))).append('\n');
+        }
+
+        // Footer
+        out.append("Average\t\t");
+        for (int a = 0; a < numAssignments; a++) {
+            out.append(FMT.format(this.averageForAssignment(a))).append('\t');
+        }
+        out.append('\n');
+
+        return out.toString();
+    }
+
+    public static void main(String[] args) throws IOException {
+        try (Scanner input = args.length > 0 ? new Scanner(new File(args[0])) :
+                                               new Scanner(System.in)) {
+            GradeBook book = new GradeBook(input);
+            System.out.println(book);
+            System.out.printf("Overall Average: %s\n",
+                              FMT.format(book.average()));
+        }
+    }
+}
