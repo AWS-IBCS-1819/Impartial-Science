@@ -15,9 +15,9 @@ inser a card @ specific index
 
     int[] ar = r.ints(6300, 0, 52).distinct().toArray();//can't just print array
     for (int i = 0; i < 52; i ++){//loop is to help print contents of array
-      shuffle.add(d.cards.get(ar[i]));
+      shuffled.add(d.cards.get(ar[i]));
   }
-  d.cards = shuffle;
+  d.cards = shuffled;
   return d;
 
   public static void main(String[] args) {
