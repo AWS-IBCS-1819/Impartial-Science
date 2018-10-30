@@ -6,48 +6,48 @@ import java.util.Scanner;
 
 public class BlackJack {
 
-	private Deck deck;
+	private Deck deck; // create a deck
 
-	private List<Card> userCards;
+	private List<Card> userCards; // card given to the user
 
-	private List<Card> compHand;
+	private List<Card> compHand; // card given to the computer
 
 	public BlackJack() {
 		this.deck = new Deck();
-		deck.shuffle(); // 洗牌
-		this.userCards = new ArrayList<>();
-		this.compHand = new ArrayList<>();
+		deck.shuffle(); // shuffle the card
+		this.userCards = new ArrayList<>(); // creating user's card deck
+		this.compHand = new ArrayList<>(); // creating computer's card deck
 
-		for (int i = 0; i < 2; i++) { // 发牌两张
-			drawCard(userCards);
-			drawCard(compHand);
+		for (int i = 0; i < 2; i++) { // give two cards
+			drawCard(userCards); // to the user
+			drawCard(compHand); // to the computer
 		}
-		while (calculateHand(compHand) < 17) { // 系统点数小于17时
-			drawCard(compHand); // 系统抽牌
+		while (calculateHand(compHand) < 17) { // the the computer's point is less than 17
+			drawCard(compHand); // give another card to the computer
 		}
 	}
 
 	/**
-	 * 抽牌
+	 * draw card
 	 *
-	 * @param cards 抽牌人的牌
+	 * @param cards user's card
 	 */
-	public void drawCard(List<Card> cards) {
-		cards.add(deck.drawCard());
+	public void drawCard(List<Card> cards) { draw card method
+		cards.add(deck.drawCard()); // the drawed card is added to the deck of used cards
 	}
 
 	/**
-	 * 计算点数
+	 * calculate the points
 	 *
 	 * @param compHand2
 	 * @return
 	 */
-	public Integer calculateHand(List<Card> compHand2) {
+	public Integer calculateHand(List<Card> compHand2) { //method of culculating the points
 		Integer total = 0;
 		for (Card card : compHand2) {
 			total += card.getValue();
 		}
-		return total;
+		return total; 
 
 	}
 
@@ -56,16 +56,16 @@ public class BlackJack {
 		System.out.println("---BlackJack---");
 		Scanner scan = new Scanner(System.in);
 		BlackJack blackJack = new BlackJack();
-		while (true) {
-			System.out.println("你当前有" + blackJack.userCards.size() + "张牌");
+		while (true) { //while loop
+			System.out.println("You have " + blackJack.userCards.size() + " cards"); //print out cards
 			for (Card card : blackJack.userCards) {
-				System.out.println("\t" + card);
+				System.out.println("\t" + card); // the two cards
 			}
-			System.out.println("当前点数:" + blackJack.calculateHand(blackJack.userCards));
-			System.out.println("Your opponent got a " +blackJack.compHand.get(1).getName());
-			if (blackJack.calculateHand(blackJack.userCards) > 21) {
-				System.out.println("系统点数:"+blackJack.calculateHand(blackJack.compHand));
-				if(blackJack.calculateHand(blackJack.compHand) > 21) {
+			System.out.println("Your point:" + blackJack.calculateHand(blackJack.userCards)); //print out user's point
+			System.out.println("Your opponent got a " +blackJack.compHand.get(1).getName()); // print out one of the comp's card
+			if (blackJack.calculateHand(blackJack.userCards) > 21) { //calculate if user bust
+				System.out.println("Computer's point:"+blackJack.calculateHand(blackJack.compHand)); // calculate if comp bust
+				if(blackJack.calculateHand(blackJack.compHand) > 21) { // if all larger than 21
 					System.out.println("All Lose");
 				}else {
 					System.out.println("You lose");
@@ -73,32 +73,32 @@ public class BlackJack {
 				System.out.println("restart Game? ( 'y' or  'n')");
 				String input = scan.next();
 				if ("y".equals(input)) {
-					main(null);  //再来一次
+					main(null);  // play it again
 				}
-				return;
+				return; // quit
 			}
-			System.out.println("是否继续抽牌? ( 'y' or else)");
+			System.out.println("Do you want to draw another card? ( 'y' or else)");
 			String input = scan.next();
 			if ("y".equals(input)) {
-				blackJack.drawCard(blackJack.userCards);
+				blackJack.drawCard(blackJack.userCards); // draw another card
 			}else {
-				Integer compScore = blackJack.calculateHand(blackJack.compHand);
-				Integer userScore = blackJack.calculateHand(blackJack.userCards);
-				System.out.println("你的点数:"+userScore);
-				System.out.println("系统点数:"+compScore);
-				if(userScore > compScore && userScore < 22) {
+				Integer compScore = blackJack.calculateHand(blackJack.compHand); //calculate the total points
+				Integer userScore = blackJack.calculateHand(blackJack.userCards); // calculate the total points
+				System.out.println("Your point:"+userScore);
+				System.out.println("Computer's point:"+compScore);
+				if(userScore > compScore && userScore < 22) { // if user's point is larger than comp's and smaller than 22
 					System.out.println("You WIN");
-				}else if (compScore > userScore && compScore < 22) {
+				}else if (compScore > userScore && compScore < 22) { // if comp's point is larger than user's and smaller than 22
 					System.out.println("You Lose");
 				}else {
-					System.out.println("All Lose");
+					System.out.println("All Lose"); // else all lose
 				}
 				System.out.println("Play new Game? ('y' or else)");
 				String isNew = scan.next();
 				if("y".equals(isNew)) {
-					main(null);
+					main(null);//new game
 				}else {
-					return;
+					return; // quit
 				}
 			}
 		}
