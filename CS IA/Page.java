@@ -32,8 +32,9 @@ public class Page extends Frame{
   private Frame f3;
   private Frame f4;
   private Frame f5;
+  private Student students;
 
-  public Page(){
+  public Page(List<Student> students){
     //to close the System
     addWindowListener(new WindowAdapter(){
       public void windowClosing(WindowEvent windowEvent){
@@ -59,6 +60,28 @@ public class Page extends Frame{
     l3.setBounds(200,50,400,30);
     f2.add(l3);
 
+    tf2 = new TextField("please type in the name of the student here");
+    tf2.setBounds(300,100,200,50);
+    f2.add(tf2);
+
+    tf4 = new TextField("please type in the name of the student here");
+    tf4.setBounds(300,100,200,50);
+    f2.add(tf4);
+
+    b6 = new Button("check info");
+    b6.setBounds(500,450,100,50);
+    f2.add(b6);
+    b6.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e2){
+        String 2 = tf2.getText();
+        Student.add(2);
+
+      //add student
+      //add another TextField for the user to text in the student's name and
+      //then read the input and add the student to the txt File
+      }
+    });
+
     //for frame 3--------------------------------------------------------------
     f3 = new Frame();
     f3.setSize(600,700);
@@ -75,38 +98,54 @@ public class Page extends Frame{
     f3.add(l4);
 
     b3 = new Button("new Schedule");
-    b3.setBounds(270,100);
+    b3.setBounds(270,100,100,50);
     f3.add(b3);
     b3.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e2){
         f4.setVisible(true);
-        for (int i = 1; i<Manager.student.size();i++){
+        for (int i = 1; i<students.size();i++){
 
-          if (Manager.student.t = "9:30"){
-            Magager.t9.add(student);
+          if (student(i).time= "9:30"){
+            Manager.t9.add(student(i).name);
           }
-          if (Manager.student.t = "10:30"){
-            Magager.t10.add(student);
+          if (student(i).time = "10:30"){
+            manager.t10.add(student(i).name);
           }
-          if (Manager.student.t = "14:30"){
-            Magager.t14.add(student);
+          if (student(i).time = "14:30"){
+            Manager.t14.add(student(i).name);
           }
-          if (Manager.student.t = "15:30"){
-            Magager.t15.add(student);
+          if (student(i).time = "15:30"){
+            Manager.t15.add(student(i).name);
           }
         } // for loop end
       }
     });
 
+    tf3 = new TextField("please type in the name of the student here");
+    tf3.setBounds(300,100,200,50);
+    f3.add(tf3);
+
     b4 = new Button("add Student");
     b4.setBounds(100,150,100,50);
     f3.add(b4);
-    b3.addActionListener(new ActionListener() {
+    b4.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e2){
-      //add student
-        
+        String 3 = tf3.getText();
+        Student.add(3);
       }
     });
+
+    b5 = new Button("delete Student");
+    b4.setBounds(300,150,100,50);
+    f3.add(b5);
+    b5.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e2){
+      //delete student
+      //add another TextField for the user to text in the student's name and
+      //then read the input and delete the student from the txt File
+      }
+    });
+
 
 
 
@@ -125,9 +164,9 @@ public class Page extends Frame{
     l5.setBounds(50,50,250,30);
     f4.add(l5);
 
-    l6 = new Lable(Manager.t4);
+    /*l6 = new Lable("student in 9:30");
     l6.setBounds(100,50,400,400);
-    f4.add(l6);
+    f4.add(l6);*/
 
 
 

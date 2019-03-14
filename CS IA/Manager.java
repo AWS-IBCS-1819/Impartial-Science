@@ -3,49 +3,35 @@
 
 import java.util.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Manager{
-  List<Student> student;
+  // List<Student> student;
 
 
-/*  public static void main(String[] args) {
-    Student a = new Student();
-  }*/
-    //ArrayList<int> num = new ArrayList<int>(); list of num of student
-    //ArrayList<String> name = new ArrayList<String>(); list of names
-    //ArrayList<String> time = new ArrayList<String>(); list of time
-    //ArrayList<String> day = new ArrayList<String>(); list of day
-    //ArrayList<int> level = new ArrayList<int>(); list of level
-    List<Student> student = new ArrayList();
-  //  public Maneger(){
-      student = new ArrayList<Student>();
-      t9 = new ArrayList<String>();
-      t10 = new ArrayList<String>();
-      t14 = new ArrayList<String>();
-      t15 = new ArrayList<String>();
+  public static void main(String[] args) {
+    ArrayList<String> t9 = new ArrayList<String>();
+    ArrayList<String> t10 = new ArrayList<String>();
+    ArrayList<String> t14 = new ArrayList<String>();
+    ArrayList<String> t15 = new ArrayList<String>();
+
+    List<Student> students = new ArrayList();
 
     try{
-      File student = new File("student.txt");
-      Scanner stu = new Scanner(student);
+      File file = new File("student.txt");
+      Scanner scan = new Scanner(file);
 
-      student s = new Student();
-      s.setName(stu.next());
-      s.setLevel(stu.next());
-      s.setDay(stu.next());
-      s.setTime(stu.next());
-      student.add(s);
-      //num.add(stu.next()+ " ");
-      //name.add(stu.next()+ " ");
-      //level.add(stu.next()+ " ");
-      //day.add(stu.next()+ " ");
-      //time.add(stu.next()+ " ");
+      while (scan.hasNextLine()) {
+        Student student = new Student();
+        student.setName(scan.next());
+        student.setLevel(scan.next());
+        student.setDay(scan.next());
+        student.setTime(scan.next());
+        students.add(student);
+      }
+
     }
     catch (FileNotFoundException e){
       e.printStackTrace();
     }
+    }
   }//
-
-
-}

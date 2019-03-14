@@ -53,10 +53,8 @@ public class Student {
     return level;
   }
 
-  public
 
 
-  public static void main(String[] args) {
 
-  }
+
 }
