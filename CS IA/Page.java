@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.*;
+import java.util.*;
+import java.io.*;
 
 public class Page extends Frame{
 
@@ -13,11 +16,13 @@ public class Page extends Frame{
   private TextField tf3;
   private TextField tf4;
   private TextField tf5;
+  private TextField tf6;
   private Button b1;
   private Button b2;
   private Button b3;
   private Button b4;
   private Button b5;
+  private Button b6;
   private Label l1;
   private Label l2;
   private Label l3;
@@ -33,6 +38,11 @@ public class Page extends Frame{
   private Frame f4;
   private Frame f5;
   private Student students;
+  //List list = Manager.uselist;
+  List<String> t9 = new ArrayList<String>();
+  List<String> t10 = new ArrayList<String>();
+  List<String> t14 = new ArrayList<String>();
+  List<String> t15 = new ArrayList<String>();
 
   public Page(List<Student> students){
     //to close the System
@@ -41,6 +51,7 @@ public class Page extends Frame{
         System.exit(0);
       }
     });
+
 
 
 
@@ -57,10 +68,10 @@ public class Page extends Frame{
     });
 
     l3 = new Label("Welcome to the Parent/Student page");
-    l3.setBounds(200,50,400,30);
+    l3.setBounds(100,50,400,30);
     f2.add(l3);
 
-    tf2 = new TextField("please type in the name of the student here");
+    /*tf2 = new TextField("please type in the name of the student here");
     tf2.setBounds(300,100,200,50);
     f2.add(tf2);
 
@@ -73,18 +84,15 @@ public class Page extends Frame{
     f2.add(b6);
     b6.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e2){
-        String 2 = tf2.getText();
-        Student.add(2);
+        Student a.name = tf2.getText();
+        students.add(a);
 
-      //add student
-      //add another TextField for the user to text in the student's name and
-      //then read the input and add the student to the txt File
       }
-    });
+    });*/
 
     //for frame 3--------------------------------------------------------------
     f3 = new Frame();
-    f3.setSize(600,700);
+    f3.setSize(1200,700);
     f3.setLayout(null);
     f3.setVisible(false);
     f3.addWindowListener(new WindowAdapter(){
@@ -94,7 +102,7 @@ public class Page extends Frame{
     });
 
     l4 = new Label("Welcome to the Staff page");
-    l4.setBounds(200,50,400,30);
+    l4.setBounds(100,50,400,30);
     f3.add(l4);
 
     b3 = new Button("new Schedule");
@@ -102,44 +110,77 @@ public class Page extends Frame{
     f3.add(b3);
     b3.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e2){
-        f4.setVisible(true);
-        for (int i = 1; i<students.size();i++){
-
-          if (student(i).time= "9:30"){
-            Manager.t9.add(student(i).name);
+        f4.setVisible(true); //转f4
+        for (Student student : students){
+          if (student.time.equals("9:30")){
+            t9.add(student.name);
           }
-          if (student(i).time = "10:30"){
-            manager.t10.add(student(i).name);
+          else if (student.time.equals("10:30")){
+            t10.add(student.name);
           }
-          if (student(i).time = "14:30"){
-            Manager.t14.add(student(i).name);
+          else if (student.time.equals("14:30")){
+            t14.add(student.name);
           }
-          if (student(i).time = "15:30"){
-            Manager.t15.add(student(i).name);
+          else if (student.time.equals("15:30")){
+            t15.add(student.name);
           }
-        } // for loop end
+          else{
+          }
+        }
       }
     });
 
-    tf3 = new TextField("please type in the name of the student here");
-    tf3.setBounds(300,100,200,50);
+    //add or remove student
+    l7 = new Label("please type in the name of the student here");
+    l7.setBounds(100,200,200,50);
+    f3.add(l8);
+    l8 = new Label("please type in the level the student is at right now");
+    l8.setBounds(100,300,200,50);
+    f3.add(l8);
+    l9 = new Label("please type in the date you want here "+"\n"+"六，日");
+    l9.setBounds(100,400,400,100);
+    f3.add(l9);
+    l10 = new Label("please type in the time you want here "+"\n"+"9:30, 10:30, 14:30, 15:30");
+    l10.setBounds(100,550,400,100);
+    f3.add(l10);
+
+    tf1 = new TextField("");
+    tf1.setBounds(400,200,100,50);
+    f3.add(tf1);
+    tf3 = new TextField("");
+    tf3.setBounds(400,300,100,50);
     f3.add(tf3);
+    tf5 = new TextField("");
+    tf5.setBounds(400,400,100,50);
+    f3.add(tf5);
+    tf6 = new TextField("");
+    tf6.setBounds(400,500,100,50);
+    f3.add(tf6);
 
     b4 = new Button("add Student");
-    b4.setBounds(100,150,100,50);
+    b4.setBounds(500,300,100,50);
     f3.add(b4);
     b4.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e2){
-        String 3 = tf3.getText();
-        Student.add(3);
+        String na = tf1.getText();
+        //Student.name.append(na);
+        String le = tf3.getText();
+        //Student.level.append(le);
+        String da = tf5.getText();
+        //Student.date.append(da);
+        String ti = tf6.getText();
+        //Student.time.append(ti);
+        Manager.writeOtxt(na,le,da,ti);
       }
     });
 
     b5 = new Button("delete Student");
-    b4.setBounds(300,150,100,50);
+    b4.setBounds(500,300,100,50);
     f3.add(b5);
     b5.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e2){
+        String lineToRemove = tf1.getText()+tf3.getText()+tf5.getText()+tf6.getText();
+        Manager.removeOtxt(lineToRemove);
       //delete student
       //add another TextField for the user to text in the student's name and
       //then read the input and delete the student from the txt File
@@ -209,6 +250,5 @@ public class Page extends Frame{
 
 }
 public static void main(String[] args) {
-  Page p = new Page();
 }
 }

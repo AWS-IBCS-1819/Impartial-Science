@@ -7,17 +7,15 @@ public class Student {
   String day;
   String level;
 
-  /*public void newStu (String n, int l, String d, String t){
-    name = n;
-    level = l;
-    day = d;
-    time = t;
-  }*/
   public Student(){
     name = "";
     level = "";
     day = "";
     time = "";
+  }
+
+  public void append(){
+    
   }
 
 
