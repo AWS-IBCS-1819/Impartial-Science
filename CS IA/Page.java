@@ -37,20 +37,27 @@ public class Page extends Frame{
   private Frame f3;
   private Frame f4;
   private Frame f5;
-  private Student students;
+  List<Student> students;
   //List list = Manager.uselist;
   List<String> t9 = new ArrayList<String>();
   List<String> t10 = new ArrayList<String>();
   List<String> t14 = new ArrayList<String>();
   List<String> t15 = new ArrayList<String>();
+  List<String> t91 = new ArrayList<String>();
+  List<String> t101 = new ArrayList<String>();
+  List<String> t141 = new ArrayList<String>();
+  List<String> t151 = new ArrayList<String>();
+  //students = Manager.uselist();
 
-  public Page(List<Student> students){
+  public Page(){
     //to close the System
     addWindowListener(new WindowAdapter(){
       public void windowClosing(WindowEvent windowEvent){
         System.exit(0);
       }
     });
+
+
 
 
 
@@ -92,7 +99,7 @@ public class Page extends Frame{
 
     //for frame 3--------------------------------------------------------------
     f3 = new Frame();
-    f3.setSize(1200,700);
+    f3.setSize(800,700);
     f3.setLayout(null);
     f3.setVisible(false);
     f3.addWindowListener(new WindowAdapter(){
@@ -102,63 +109,78 @@ public class Page extends Frame{
     });
 
     l4 = new Label("Welcome to the Staff page");
-    l4.setBounds(100,50,400,30);
+    l4.setBounds(300,50,400,30);
     f3.add(l4);
 
     b3 = new Button("new Schedule");
-    b3.setBounds(270,100,100,50);
+    b3.setBounds(450,600,200,50);
     f3.add(b3);
     b3.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e2){
         f4.setVisible(true); //转f4
+        students = Manager.uselist();
+
         for (Student student : students){
-          if (student.time.equals("9:30")){
+
+          if (student.time.equals("9:30")&& student.day.equals("六")){
             t9.add(student.name);
           }
-          else if (student.time.equals("10:30")){
+          else if (student.time.equals("10:30")&&student.day.equals("六")){
             t10.add(student.name);
           }
-          else if (student.time.equals("14:30")){
+          else if (student.time.equals("14:30")&&student.day.equals("六")){
             t14.add(student.name);
           }
-          else if (student.time.equals("15:30")){
+          else if (student.time.equals("15:30")&&student.day.equals("六")){
             t15.add(student.name);
           }
-          else{
+          if (student.time.equals("9:30")&& student.day.equals("日")){
+            t91.add(student.name);
           }
+          else if (student.time.equals("10:30")&&student.day.equals("日")){
+            t101.add(student.name);
+          }
+          else if (student.time.equals("14:30")&&student.day.equals("日")){
+            t141.add(student.name);
+          }
+          else if (student.time.equals("15:30")&&student.day.equals("日")){
+            t151.add(student.name);
+          }
+
         }
+        Manager.writeNtxt(t9, t10, t14, t15, t91, t101, t141, t151);
       }
     });
 
     //add or remove student
     l7 = new Label("please type in the name of the student here");
-    l7.setBounds(100,200,200,50);
-    f3.add(l8);
+    l7.setBounds(100,200,400,50);
+    f3.add(l7);
     l8 = new Label("please type in the level the student is at right now");
-    l8.setBounds(100,300,200,50);
+    l8.setBounds(100,300,400,50);
     f3.add(l8);
-    l9 = new Label("please type in the date you want here "+"\n"+"六，日");
-    l9.setBounds(100,400,400,100);
+    l9 = new Label("please type in the date you want here "+"\n"+"“六，日”");
+    l9.setBounds(100,400,400,50);
     f3.add(l9);
-    l10 = new Label("please type in the time you want here "+"\n"+"9:30, 10:30, 14:30, 15:30");
-    l10.setBounds(100,550,400,100);
+    l10 = new Label("please type in the time you want here "+"\n"+"“9:30, 10:30, 14:30, 15:30”");
+    l10.setBounds(100,500,500,50);
     f3.add(l10);
 
     tf1 = new TextField("");
-    tf1.setBounds(400,200,100,50);
+    tf1.setBounds(600,200,100,50);
     f3.add(tf1);
     tf3 = new TextField("");
-    tf3.setBounds(400,300,100,50);
+    tf3.setBounds(600,300,100,50);
     f3.add(tf3);
     tf5 = new TextField("");
-    tf5.setBounds(400,400,100,50);
+    tf5.setBounds(600,400,100,50);
     f3.add(tf5);
     tf6 = new TextField("");
-    tf6.setBounds(400,500,100,50);
+    tf6.setBounds(600,500,100,50);
     f3.add(tf6);
 
     b4 = new Button("add Student");
-    b4.setBounds(500,300,100,50);
+    b4.setBounds(150,600,200,50);
     f3.add(b4);
     b4.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e2){
@@ -174,25 +196,22 @@ public class Page extends Frame{
       }
     });
 
-    b5 = new Button("delete Student");
-    b4.setBounds(500,300,100,50);
+    /*b5 = new Button("delete Student");
+    b5.setBounds(900,300,200,50);
     f3.add(b5);
     b5.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e2){
         String lineToRemove = tf1.getText()+tf3.getText()+tf5.getText()+tf6.getText();
         Manager.removeOtxt(lineToRemove);
-      //delete student
-      //add another TextField for the user to text in the student's name and
-      //then read the input and delete the student from the txt File
       }
-    });
+    });*/
 
 
 
 
     //for frame 4--------------------------------------------------------------
     f4 = new Frame();
-    f4.setSize(600,700);
+    f4.setSize(320,100);
     f4.setLayout(null);
     f4.setVisible(false);
     f4.addWindowListener(new WindowAdapter(){
@@ -212,31 +231,31 @@ public class Page extends Frame{
 
 
     //for frame 1--------------------------------------------------------------
-    setSize(600,700);
+    setSize(600,200);
     setLayout(null);
     setVisible(true);
     setBackground(Color.pink);
 
     l1 = new Label("Welcome to Shang Jie Swiming Club");
-    l1.setBounds(190,50,400,30);
+    l1.setBounds(200,50,400,30);
     add(l1);
 
-    l2 = new Label("Select parent/student or staff");
+    /*l2 = new Label("Select parent/student or staff");
     l2.setBounds(210,120,500,30);
-    add(l2);
+    add(l2);*/
 
-    b1 = new Button("Parent/Student");
+    /*b1 = new Button("Parent/Student");
     b1.setBounds(50, 150, 150, 30);
-    add(b1);
+    add(b1);*/
 
-    b1.addActionListener(new ActionListener() {
+    /*b1.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e2){
         f2.setVisible(true);
       }
-    });
+    });*/
 
     b2 = new Button("Staff");
-    b2.setBounds(400,150,150,30);
+    b2.setBounds(230,150,150,30);
     add(b2);
 
     b2.addActionListener(new ActionListener() {
@@ -250,5 +269,7 @@ public class Page extends Frame{
 
 }
 public static void main(String[] args) {
+  Page page = new Page();
+  //students = Manager.uselist();
 }
 }
